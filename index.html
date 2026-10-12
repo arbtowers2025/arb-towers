@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#03132a">
-<title>ARB TOWERS | Totem fără bloc</title>
+<title>ARB TOWERS | Totem Premium</title>
 <style>
 :root{--navy:#030c1e;--gold:#f7c780;--ice:#c7e6ff;--light:#f5f9ff;--glass:#092650d9;--rim:#188cf9}
 *{box-sizing:border-box}
@@ -53,7 +53,9 @@ button{font:inherit;-webkit-tap-highlight-color:transparent}
 .forecast-card{min-width:0;border:1.5px solid #1895ff;border-radius:clamp(10px,1vw,18px);background:linear-gradient(150deg,#062d60e8 0%,#082a57c9 50%,#041a37e8 100%);box-shadow:inset 0 1px 15px #037bd65b,0 8px 23px #0006,0 0 8px #168bff29;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:clamp(1px,.55vh,9px);overflow:hidden}
 .forecast-card:first-child{border-color:#6ac4ff;box-shadow:inset 0 1px 17px #168bff85,0 0 13px #168bff55}
 .forecast-time{font-size:clamp(12px,1.2vw,23px);font-weight:700;white-space:nowrap}
-.forecast-svg{width:65%;height:50%;max-width:100px;min-height:37px;filter:drop-shadow(0 3px 7px #0007)}
+.forecast-svg{width:65%;height:50%;max-width:100px;min-height:37px;display:flex;align-items:center;justify-content:center;filter:drop-shadow(0 3px 7px #0007)}
+.forecast-svg svg,.current-glyph svg{width:100%;height:100%;display:block}
+.forecast-degrees{color:#f5fbff;text-shadow:0 1px 4px #000a,0 0 10px #72c9ff40}
 .forecast-degrees{font-size:clamp(14px,1.5vw,26px);font-weight:750;white-space:nowrap}
 .menu{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));grid-template-rows:repeat(2,minmax(0,1fr));gap:clamp(10px,1.3vw,22px);flex:1;min-height:0}
 .tile{min-width:0;min-height:0;position:relative;overflow:hidden;border:1.5px solid #299eff;border-radius:clamp(13px,1.3vw,23px);background:linear-gradient(112deg,#045bb3e8 0%,#073875ef 31%,#062551ee 100%);box-shadow:inset 0 1px 20px #178cfa75,0 6px 23px #000a,0 0 10px #197de64a;color:white;display:flex;align-items:center;gap:.8vw;padding:.8vw 1.1vw .8vw .9vw;cursor:pointer;text-align:left;transition:filter .2s,transform .2s,border-color .2s}
@@ -108,6 +110,42 @@ button{font:inherit;-webkit-tap-highlight-color:transparent}
 @media(max-width:1100px){.main{width:min(100%,1100px)}.tile{padding:1vw 1.3vw}.icon-img{width:clamp(70px,9vw,130px)}.brand{font-size:4.2vw}}
 @media(max-width:750px){.head{height:26%;grid-template-columns:1fr 1fr}.identity{grid-column:1}.clock{grid-column:1;grid-row:2;justify-self:start}.current{grid-column:2;grid-row:1}.brand{font-size:clamp(26px,5vw,45px)}.main{width:100%}.forecast{height:25%;gap:5px}.menu{gap:9px}.tile{padding:8px}.icon-img{width:clamp(54px,15vw,96px);height:clamp(63px,12vh,115px)}.tile-name{font-size:clamp(15px,3vw,25px)}.tile-sub{display:none}}
 
+
+/* Vreme cinematică — adaptare desktop / totem / telefon */
+#particles{opacity:.84}
+#scene{background-attachment:fixed}
+#scene::before{opacity:.44;animation:skyDrift 40s ease-in-out infinite alternate}
+.current-glyph svg{width:100%;height:100%;overflow:visible;filter:drop-shadow(0 9px 12px #0006)}
+.forecast-svg{display:flex;align-items:center;justify-content:center}
+.forecast-svg svg{height:100%;width:100%;max-height:95px;filter:drop-shadow(0 6px 8px #0007)}
+.forecast-degrees,.current-temp{font-variant-numeric:tabular-nums}
+@media(min-width:800px) and (max-height:640px){
+ .frame{padding-top:10px;padding-bottom:6px}.head{height:23%}.main{gap:9px}
+ .forecast{height:26%;min-height:70px}.icon-img{height:clamp(54px,13vh,105px)}
+ .tile{padding:4px 1vw}.foot{padding-top:8px}
+}
+@media(max-width:750px){
+ html,body{min-height:100%;height:auto;overflow:auto}
+ body{overflow-x:hidden}#scene,#particles{position:fixed}
+ .frame{height:auto;min-height:100dvh;padding:21px 18px 18px}
+ .head{height:auto;min-height:190px;grid-template-columns:1fr 1fr;column-gap:8px;row-gap:23px}
+ .brand{font-size:clamp(25px,5.9vw,36px)}.tagline{font-size:9px;letter-spacing:.15em}
+ .clock{align-self:start}.clock-time{font-size:clamp(30px,7vw,46px)}
+ .clock-date{white-space:normal;line-height:1.3;font-size:11px}
+ .current{align-self:start;gap:3px}.current-glyph{height:61px;width:61px}
+ .current-temp{font-size:clamp(25px,6.8vw,38px)}.current-desc{font-size:12px}
+ .main{display:flex;flex:none;gap:17px}
+ .forecast{height:132px;min-height:132px;gap:5px}
+ .forecast-card{padding:5px 1px;gap:2px}.forecast-time{font-size:clamp(10px,2.7vw,14px)}
+ .forecast-svg{height:65px;min-height:50px;width:92%}.forecast-degrees{font-size:14px}
+ .menu{grid-template-rows:none;grid-auto-rows:minmax(112px,auto);gap:10px;flex:none}
+ .tile{min-height:112px;padding:9px;gap:5px;border-radius:17px}
+ .icon-img{width:clamp(62px,16vw,90px);height:84px}
+ .tile-name{font-size:clamp(15px,3.6vw,23px);white-space:normal}
+ .chevron{font-size:21px}.foot{font-size:10px;padding-top:18px}
+ .panel{max-height:84dvh}.api-status{display:block;position:relative;max-width:none;margin:12px 0 0;bottom:auto;left:auto;text-align:center;font-size:10px}
+}
+@media(max-width:390px){.forecast{height:114px;min-height:114px}.forecast-svg{height:48px;min-height:42px}.icon-img{width:52px;height:70px}.tile{min-height:96px}.menu{grid-auto-rows:minmax(96px,auto)}.tile-name{font-size:15px}.head{min-height:173px}}
 </style>
 </head>
 <body>
@@ -145,7 +183,7 @@ const CONFIG={
   instalator:"",
   electrician:"",
   centrale:"",
-whatsapp:"https://chat.whatsapp.com/J1zd5rO1WqG7qrQSbV6Q5d", // Ex.: https://chat.whatsapp.com/...
+  whatsapp:"https://chat.whatsapp.com/J1zd5rO1WqG7qrQSbV6Q5d", // Ex.: https://chat.whatsapp.com/...
   anunturi:[
     {titlu:"Bine ați venit la ARB TOWERS!",mesaj:"Anunțurile administrației vor apărea aici."}
   ]
@@ -210,36 +248,52 @@ function weatherCode(code,isDay=true){
  return {type:"cloud",desc:"Vreme variabilă"};
 }
 function svgWeather(type,id){
- const base=`<defs>
- <linearGradient id="cl${id}" x1="0" y1="0" x2="0.75" y2="1"><stop stop-color="#f6fbff"/><stop offset=".47" stop-color="#a2c6e9"/><stop offset="1" stop-color="#487aaf"/></linearGradient>
- <linearGradient id="sun${id}" x1=".2" y1="0" x2=".8" y2="1"><stop stop-color="#fff8bb"/><stop offset="1" stop-color="#ffab42"/></linearGradient>
- <linearGradient id="rain${id}" x1="0" x2="0.7" y1="0" y2="1"><stop stop-color="#a7e5ff"/><stop offset="1" stop-color="#0079ff"/></linearGradient>
- <filter id="sh${id}"><feGaussianBlur stdDeviation="2.1"/></filter></defs>`;
- const sun=`<g stroke="#ffd47d" stroke-width="4.2" stroke-linecap="round" opacity=".92">${Array.from({length:8},(_,i)=>{const a=i*Math.PI/4;return `<path d="M ${58+Math.cos(a)*29} ${41+Math.sin(a)*29} L ${58+Math.cos(a)*35} ${41+Math.sin(a)*35}"/>`}).join("")}</g><circle cx="58" cy="41" r="22" fill="url(#sun${id})"/><circle cx="52" cy="34" r="8" fill="#fff9d3" opacity=".5"/>`;
- const cloud=`<g><path d="M28 82C7 81 10 55 30 51C34 30 58 22 76 39C94 30 117 40 119 62C132 68 126 86 110 87H31Z" fill="#000" opacity=".28" transform="translate(1 4)" filter="url(#sh${id})"/><path d="M28 82C7 81 10 55 30 51C34 30 58 22 76 39C94 30 117 40 119 62C132 68 126 86 110 87H31Z" fill="url(#cl${id})"/><path d="M30 53C40 32 59 34 70 43" fill="none" stroke="#fff" stroke-width="4" stroke-linecap="round" opacity=".57"/></g>`;
- const rain=`<g stroke="url(#rain${id})" stroke-width="4.5" stroke-linecap="round"><path d="M35 93l-7 14"/><path d="M58 93l-7 14"/><path d="M81 93l-7 14"/><path d="M104 93l-7 14"/></g>`;
- const snow=`<g stroke="#d8f6ff" stroke-width="2.6" stroke-linecap="round">${[37,70,101].map(x=>`<path d="M${x} 95v17 M${x-7} 103.5h14 M${x-5} 98.5l10 10 M${x+5} 98.5l-10 10"/>`).join("")}</g>`;
- const moon=`<path d="M88 23C59 13 35 39 41 68c5 25 29 34 49 25-22 0-38-15-39-35-2-15 9-29 37-35Z" fill="url(#sun${id})"/><circle cx="92" cy="28" r="3" fill="#e9f7ff"/><circle cx="108" cy="52" r="2" fill="#e9f7ff"/>`;
- const fog=`${cloud}<g stroke="#d1e6fc" stroke-width="3" stroke-linecap="round" opacity=".8"><path d="M29 96h78"/><path d="M40 108h62"/></g>`;
- const bolt=`<path d="M77 81L57 104h17l-9 18 33-31H79L88 81Z" fill="#ffd56a" stroke="#fff0b0" stroke-width="2"/>`;
- let contents=type==="sun"?sun:type==="moon"?moon:type==="partly"?`<g transform="translate(-20,-9) scale(.82)">${sun}</g>${cloud}`:type==="fog"?fog:cloud;
- if(type==="rain")contents+=rain;
- if(type==="snow")contents+=snow;
- if(type==="storm")contents+=bolt;
- return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 140 132" role="img" aria-label="${type}">${base}${contents}</svg>`;
+ const defs=`<defs>
+ <radialGradient id="sunGlow${id}" cx="50%" cy="50%" r="55%"><stop offset="0%" stop-color="#fff9d0"/><stop offset="58%" stop-color="#ffd36e"/><stop offset="100%" stop-color="#ff9f34"/></radialGradient>
+ <linearGradient id="cloudMain${id}" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#f8fbff"/><stop offset="48%" stop-color="#c7dced"/><stop offset="100%" stop-color="#6d91b6"/></linearGradient>
+ <linearGradient id="cloudShade${id}" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#91b0cd" stop-opacity="0"/><stop offset="100%" stop-color="#3b5f86" stop-opacity=".72"/></linearGradient>
+ <linearGradient id="drop${id}" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#d7f4ff"/><stop offset="100%" stop-color="#1491ff"/></linearGradient>
+ <filter id="cloudShadow${id}" x="-30%" y="-30%" width="160%" height="190%"><feDropShadow dx="0" dy="7" stdDeviation="6" flood-color="#000814" flood-opacity=".42"/></filter>
+ <filter id="blur${id}"><feGaussianBlur stdDeviation="1.3"/></filter>
+ </defs>`;
+ const sun=`<g><g opacity=".9" stroke="#ffd87c" stroke-width="4" stroke-linecap="round">${Array.from({length:10},(_,i)=>{const a=i*Math.PI/5;return `<line x1="70" y1="44" x2="${70+Math.cos(a)*35}" y2="${44+Math.sin(a)*35}"/>`;}).join("")}</g><circle cx="70" cy="44" r="23" fill="url(#sunGlow${id})"/><circle cx="62" cy="36" r="9" fill="#fffbe5" opacity=".55"/></g>`;
+ const moon=`<g><path d="M90 20c-27 0-45 22-45 45 0 23 18 42 41 42 10 0 18-2 25-7-18 2-36-12-40-31-5-21 8-41 32-49-4 0-9 0-13 0Z" fill="url(#sunGlow${id})"/><circle cx="104" cy="29" r="3" fill="#f0fbff" opacity=".95"/><circle cx="115" cy="51" r="2" fill="#f0fbff" opacity=".9"/></g>`;
+ const cloud=`<g filter="url(#cloudShadow${id})"><path d="M26 88c-15 0-24-9-24-21 0-12 9-22 24-23 4-18 19-29 37-29 14 0 27 7 35 19 4-2 9-3 14-3 16 0 29 11 31 25 12 2 21 11 21 24 0 15-13 27-29 27H26Z" fill="url(#cloudMain${id})"/><path d="M30 77c0-10 7-19 18-22 4-16 18-26 33-26 11 0 21 4 29 14-11-5-29-2-37 8-9-5-22-3-30 3-6 4-9 11-13 23Z" fill="#ffffff" opacity=".36"/><path d="M27 89c4-9 11-14 21-15 5 5 11 9 20 10 19 4 42-2 59-4 10-1 19-1 26 3-5 8-15 15-28 15H27Z" fill="url(#cloudShade${id})"/></g>`;
+ const rain=`<g stroke="url(#drop${id})" stroke-width="4.1" stroke-linecap="round">${[30,48,66,84,102,120].map((x,i)=>`<line x1="${x}" y1="92" x2="${x-6}" y2="${108+(i%2)*4}"/>`).join("")}</g><g fill="#98dcff" opacity=".4" filter="url(#blur${id})">${[24,43,70,88,111].map((x,i)=>`<ellipse cx="${x}" cy="115" rx="6" ry="1.3"/>`).join("")}</g>`;
+ const snow=`<g stroke="#e1f7ff" stroke-width="2.4" stroke-linecap="round">${[38,72,106].map(x=>`<path d="M${x} 96v18 M${x-7} 105h14 M${x-5} 100l10 10 M${x+5} 100l-10 10"/>`).join("")}</g>`;
+ const fog=`${cloud}<g stroke="#d8ecff" stroke-width="3" stroke-linecap="round" opacity=".9"><line x1="30" y1="98" x2="110" y2="98"/><line x1="42" y1="110" x2="122" y2="110"/></g>`;
+ const bolt=`<path d="M84 82 63 107h16l-9 19 31-32H84l8-12Z" fill="#ffd86e" stroke="#fff2af" stroke-width="2"/>`;
+ let content=type==="sun"?sun:type==="moon"?moon:type==="partly"?`<g transform="translate(-18,-9) scale(.82)">${sun}</g>${cloud}`:type==="fog"?fog:cloud;
+ if(type==="rain")content+=rain;
+ if(type==="snow")content+=snow;
+ if(type==="storm")content+=rain+bolt;
+ return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 140 132" role="img" aria-label="${type}">${defs}${content}</svg>`;
 }
 let sceneType="cloud",isNight=false,weatherLast=0;
-function drawInitialForecast(){
+function buildCard(hourText,type,temp,key){
+ const card=document.createElement("div");card.className="forecast-card";
+ const t=document.createElement("span");t.className="forecast-time";t.textContent=hourText;
+ const icon=document.createElement("span");icon.className="forecast-svg";icon.innerHTML=svgWeather(type,key);
+ const deg=document.createElement("span");deg.className="forecast-degrees";deg.textContent=temp;
+ card.append(t,icon,deg);return card;
+}
+function drawInitialForecast(baseTemp=null){
  const host=el("forecast");host.replaceChildren();
  const now=new Date();
  const hourParts=new Intl.DateTimeFormat("ro-RO",{hour:"2-digit",hour12:false,timeZone:RO_TZ}).format(now);
  let start=Number(hourParts);
+ const temps=baseTemp===null?Array(6).fill(null):[baseTemp,baseTemp,baseTemp,baseTemp,baseTemp,baseTemp];
  for(let i=0;i<6;i++){
-  const card=document.createElement("div");card.className="forecast-card";
-  card.innerHTML=`<span class="forecast-time">${String((start+i)%24).padStart(2,"0")}:00</span><span class="forecast-svg">${svgWeather("cloud","initial"+i)}</span><span class="forecast-degrees">--°</span>`;
-  host.append(card);
+  host.append(buildCard(`${String((start+i)%24).padStart(2,"0")}:00`,`cloud`,temps[i]===null?"--°":`${temps[i]}°`,`initial${i}`));
  }
  el("currentGlyph").innerHTML=svgWeather("cloud","current0");
+ el("temperature").textContent=baseTemp===null?"--°C":`${baseTemp}°C`;
+}
+function drawFallbackWeather(){
+ sceneType="cloud";isNight=false;updateScene();
+ drawInitialForecast();
+ el("condition").textContent="Meteo indisponibil";
+ el("apiStatus").textContent="Conexiune meteo indisponibilă · fără valori inventate";
 }
 drawInitialForecast();
 function updateScene(){
@@ -252,32 +306,34 @@ async function fetchWeather(){
   const response=await fetch(url,{cache:"no-store"});
   if(!response.ok)throw new Error("Conexiune");
   const data=await response.json(),now=data.current,hourly=data.hourly;
+  if(!hourly||!Array.isArray(hourly.time)||!Array.isArray(hourly.temperature_2m))throw new Error("Date meteo incomplete");
   isNight=now.is_day===0;
   const curr=weatherCode(now.weather_code,!isNight);
   sceneType=curr.type;
   if(Number(now.precipitation)>0&&["cloud","partly","sun"].includes(sceneType))sceneType="rain";
   updateScene();
   el("currentGlyph").innerHTML=svgWeather(sceneType,"current");
-  el("temperature").textContent=Math.round(now.temperature_2m)+"°C";
+  const currentTemp=Math.round(Number(now.temperature_2m));
+  el("temperature").textContent=Number.isFinite(currentTemp)?currentTemp+"°C":"--°C";
   el("condition").textContent=curr.desc;
-  const startKey=now.time.slice(0,13)+":00";
+  const startKey=String(now.time||"").slice(0,13)+":00";
   let start=hourly.time.findIndex(t=>t>=startKey);
   if(start<0)start=0;
-  const host=el("forecast");
   const cards=[];
   for(let i=start;i<Math.min(start+6,hourly.time.length);i++){
-   const hourType=weatherCode(hourly.weather_code[i],Boolean(hourly.is_day[i]));
-   const card=document.createElement("div");card.className="forecast-card";
-   const t=document.createElement("span");t.className="forecast-time";t.textContent=hourly.time[i].slice(11,16);
-   const icon=document.createElement("span");icon.className="forecast-svg";icon.innerHTML=svgWeather(hourType.type,"h"+i);
-   const deg=document.createElement("span");deg.className="forecast-degrees";deg.textContent=Math.round(hourly.temperature_2m[i])+"°";
-   card.append(t,icon,deg);cards.push(card);
+   const hourType=weatherCode(hourly.weather_code[i],Boolean(hourly.is_day?.[i]));
+   const hourText=String(hourly.time[i]).slice(11,16)||"--:--";
+   const val=Math.round(Number(hourly.temperature_2m[i]));
+   const tempText=(Number.isFinite(val)?val:Number.isFinite(currentTemp)?currentTemp:"--")+"°";
+   cards.push(buildCard(hourText,hourType.type,tempText,"h"+i));
   }
-  if(cards.length)host.replaceChildren(...cards);
-  weatherLast=Date.now();el("apiStatus").textContent="Meteo actualizat automat · Open-Meteo";
+  if(cards.length)el("forecast").replaceChildren(...cards);
+  else drawInitialForecast(Number.isFinite(currentTemp)?currentTemp:null);
+  weatherLast=Date.now();
+  el("apiStatus").textContent="Meteo actualizat automat · Open-Meteo";
  }catch(err){
-  el("apiStatus").textContent=weatherLast?"Date meteo temporar neactualizate":"Meteo indisponibil momentan · necesită internet";
-  if(!weatherLast)el("condition").textContent="Meteo indisponibil";
+  if(!weatherLast) drawFallbackWeather();
+  else el("apiStatus").textContent="Date meteo temporar neactualizate";
  }
 }
 fetchWeather();setInterval(fetchWeather,10*60*1000);
@@ -288,38 +344,74 @@ function resize(){
  const dpr=Math.min(window.devicePixelRatio||1,2);
  canvas.width=Math.round(innerWidth*dpr);canvas.height=Math.round(innerHeight*dpr);
  ctx.setTransform(dpr,0,0,dpr,0,0);
- drops=Array.from({length:150},()=>({x:Math.random()*innerWidth,y:Math.random()*innerHeight,speed:2.5+Math.random()*6,length:8+Math.random()*20,rad:1+Math.random()*2.5}));
+ drops=Array.from({length:innerWidth<750?70:155},()=>({x:Math.random()*innerWidth,y:Math.random()*innerHeight,speed:2.5+Math.random()*6,length:8+Math.random()*20,rad:1+Math.random()*2.5}));
 }
 resize();window.addEventListener("resize",resize);
+// Nori volumetrici pictați procedural, fără imagini externe și fără costuri.
+const cloudBanks=[
+ {x:-.06,y:.08,w:.24,h:.10,seed:1},{x:.22,y:.16,w:.32,h:.11,seed:2},
+ {x:.60,y:.07,w:.36,h:.14,seed:3},{x:.96,y:.18,w:.23,h:.12,seed:4}
+];
+function paintCloud(x,y,rx,ry,opacity,seed){
+ for(let j=0;j<8;j++){
+  const ox=Math.sin(seed*17+j*2.8)*rx*.54;
+  const oy=Math.cos(seed*11+j*1.9)*ry*.34;
+  const rr=rx*(.24+(j%4)*.083);
+  const cx=x+ox,cy=y+oy;
+  ctx.save();ctx.translate(cx,cy);ctx.scale(1,.43+ry/Math.max(rx,1));
+  const g=ctx.createRadialGradient(0,-rr*.14,rr*.05,0,0,rr);
+  g.addColorStop(0,`rgba(236,245,255,${opacity*.82})`);
+  g.addColorStop(.35,`rgba(178,205,233,${opacity*.46})`);
+  g.addColorStop(.74,`rgba(82,117,157,${opacity*.13})`);
+  g.addColorStop(1,'rgba(17,50,90,0)');
+  ctx.fillStyle=g;ctx.beginPath();ctx.arc(0,0,rr,0,Math.PI*2);ctx.fill();ctx.restore();
+ }
+}
+function paintSkyClouds(w,h){
+ const dark=['rain','storm'].includes(sceneType);
+ const alpha=dark?.21:sceneType==='snow'?.24:sceneType==='cloud'||sceneType==='fog'?.17:sceneType==='partly'?.12:.04;
+ for(const b of cloudBanks){
+  const drift=(phase*8+b.seed*23)%(w*.23);
+  const x=b.x*w+drift;
+  paintCloud(x,b.y*h,b.w*w,b.h*h,alpha,b.seed);
+ }
+}
 function animate(){
  const w=innerWidth,h=innerHeight;ctx.clearRect(0,0,w,h);phase+=.007;
+ paintSkyClouds(w,h);
  if(["rain","storm"].includes(sceneType)){
-  ctx.lineWidth=1.3;ctx.strokeStyle="rgba(150,210,255,.48)";
+  ctx.lineWidth=1.08;
   for(const d of drops){
-   ctx.beginPath();ctx.moveTo(d.x,d.y);ctx.lineTo(d.x-3.2,d.y+d.length);ctx.stroke();
-   d.y+=d.speed*1.65;d.x-=1.15;
-   if(d.y>h+25){d.y=-30;d.x=Math.random()*w;}
+   const grad=ctx.createLinearGradient(d.x,d.y,d.x-3.5,d.y+d.length);
+   grad.addColorStop(0,"rgba(220,244,255,.08)");
+   grad.addColorStop(.3,"rgba(174,224,255,.45)");
+   grad.addColorStop(1,"rgba(66,155,255,.78)");
+   ctx.strokeStyle=grad;
+   ctx.beginPath();ctx.moveTo(d.x,d.y);ctx.lineTo(d.x-3.5,d.y+d.length);ctx.stroke();
+   if(d.y>h-8&&Math.random()<.14){ctx.fillStyle="rgba(175,225,255,.16)";ctx.fillRect(d.x-7,h-2,14,1.6);}
+   d.y+=d.speed*1.7;d.x-=1.18;
+   if(d.y>h+30){d.y=-30;d.x=Math.random()*w;d.length=10+Math.random()*22;}
   }
-  if(sceneType==="storm"&&Math.random()<.003){
-   ctx.fillStyle="rgba(200,227,255,.18)";ctx.fillRect(0,0,w,h);
-  }
+  // soft glass streaks at top for rainy mood
+  for(let i=0;i<10;i++){const x=(i/10)*w+Math.sin(phase*12+i)*8;ctx.fillStyle="rgba(255,255,255,.035)";ctx.fillRect(x,0,2,70+25*Math.sin(phase*3+i));}
+  if(sceneType==="storm"&&Math.random()<.0035){ctx.fillStyle="rgba(210,232,255,.20)";ctx.fillRect(0,0,w,h);}
  }else if(sceneType==="snow"){
-  ctx.fillStyle="rgba(239,249,255,.8)";
+  ctx.fillStyle="rgba(239,249,255,.82)";
   for(const d of drops){
    ctx.beginPath();ctx.arc(d.x,d.y,d.rad,0,Math.PI*2);ctx.fill();
    d.y+=d.speed*.33;d.x+=Math.sin(phase+d.y*.025)*.48;
    if(d.y>h+5){d.y=-10;d.x=Math.random()*w;}
   }
  }else if(["sun","partly"].includes(sceneType)&&!isNight){
-  const x=w*.86,y=h*.11,g=ctx.createRadialGradient(x,y,4,x,y,w*.32);
-  g.addColorStop(0,"rgba(255,221,145,.25)");g.addColorStop(1,"rgba(255,221,145,0)");
+  const x=w*.82,y=h*.12,g=ctx.createRadialGradient(x,y,4,x,y,w*.28);
+  g.addColorStop(0,"rgba(255,230,155,.26)");g.addColorStop(1,"rgba(255,221,145,0)");
   ctx.fillStyle=g;ctx.fillRect(0,0,w,h);
- }else if(sceneType==="cloud"){
-  for(let i=0;i<3;i++){
-   const x=w*(.68+i*.11)+Math.sin(phase*.5+i)*25,y=h*(.12+i*.075);
-   const g=ctx.createRadialGradient(x,y,5,x,y,130);
-   g.addColorStop(0,"rgba(222,238,255,.065)");g.addColorStop(1,"rgba(222,238,255,0)");
-   ctx.fillStyle=g;ctx.fillRect(x-140,y-140,280,280);
+ }else if(sceneType==="cloud"||sceneType==="fog"){
+  for(let i=0;i<4;i++){
+   const x=w*(.2+i*.18)+Math.sin(phase*.45+i)*22,y=h*(.08+i*.045);
+   const g=ctx.createRadialGradient(x,y,10,x,y,145);
+   g.addColorStop(0,"rgba(228,240,255,.11)");g.addColorStop(.55,"rgba(210,228,248,.05)");g.addColorStop(1,"rgba(222,238,255,0)");
+   ctx.fillStyle=g;ctx.beginPath();ctx.ellipse(x,y,92,42,0,0,Math.PI*2);ctx.fill();
   }
  }
  requestAnimationFrame(animate);
