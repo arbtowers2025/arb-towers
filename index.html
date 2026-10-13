@@ -303,8 +303,7 @@ updateClock();setInterval(updateClock,1000);
 const escapeHTML=s=>String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
 const numberBlock=(title,num)=>{
  const value=String(num||"").trim();
- const phone=value.replace(/[^\d+]/g,"");
- return `<div class="notice"><h3>${title}</h3><p>${value?`<a class="phone" href="tel:${phone}">${escapeHTML(value)}</a>`:"Telefonul va fi adăugat."}</p></div>`;
+ return `<div class="notice"><h3>${title}</h3><p>${value?`<span class="phone">${escapeHTML(value)}</span>`:"Telefonul va fi adăugat."}</p></div>`;
 };
 let closeTimer=null;
 function showPage(which){
@@ -326,7 +325,7 @@ function showPage(which){
   title="💬 Grupul WhatsApp al locatarilor";
   const link=CONFIG.whatsapp.trim();
   body=link.startsWith("https://chat.whatsapp.com/")?
-  `<p>Scanați codul QR pentru a accesa grupul ARB TOWERS.</p><img class="qr" alt="Cod QR pentru grup" src="https://api.qrserver.com/v1/create-qr-code/?size=280x280&data=${encodeURIComponent(link)}"><p style="text-align:center"><a class="phone" target="_blank" rel="noopener noreferrer" href="${escapeHTML(link)}">Deschide grupul WhatsApp ↗</a></p>`:
+  `<p>Scanați codul QR pentru a accesa grupul ARB TOWERS.</p><img class="qr" alt="Cod QR pentru grup" src="https://api.qrserver.com/v1/create-qr-code/?size=280x280&data=${encodeURIComponent(link)}"><p style="text-align:center"><span class="phone">Grupul WhatsApp ARB TOWERS</span></p>`:
   `<div class="notice"><h3>Comunitatea ARB TOWERS</h3><p>Codul QR pentru grupul celor 14 apartamente va apărea după adăugarea linkului de invitație.</p></div>`;
  }
  el("modalTitle").textContent=title;el("modalBody").innerHTML=body;
